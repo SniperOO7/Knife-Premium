@@ -12,7 +12,7 @@
 * **What full version of this plugin have ?**
     - Updates free
     - Price for knifes (you can disabled price)
-    - For how long players will get knife (pernament, whole map, one round)
+    - You can change how long players will get knife (pernament, whole map, one round)
     - Sound effects for all knifes
     - Damage for all knifes (you can edit damage for all knifes)
     - You can choose what currency you want (game currency or myjailshop credits)
