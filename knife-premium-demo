@@ -22,7 +22,7 @@ ConVar g_cChooselimit;
 
 public Plugin myinfo = 
 {
-	name = "Knife Premium [Full Version]",
+	name = "Knife Premium [Demo Version]",
 	author = PLUGIN_AUTHOR,
 	description = "Knife Premium from Sniper007",
 	version = PLUGIN_VERSION,
