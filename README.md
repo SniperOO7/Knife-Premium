@@ -16,5 +16,6 @@
     - Damage for all knifes (you can edit damage for all knifes)
     - You can choose what currency you want (game currency or myjailshop credits)
     - Limit for player (if player can use menu without limit or not)
+    - VIP benefits 
 
 * **If you interested in full version, you can contact me on steam: https://steamcommunity.com/id/Sniper-oo7/**
