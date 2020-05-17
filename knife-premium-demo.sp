@@ -22,37 +22,33 @@ ConVar g_cChooselimit;
 
 public Plugin myinfo = 
 {
-	name = "Knife Premium [Demo Version]",
-	author = PLUGIN_AUTHOR,
-	description = "Knife Premium from Sniper007",
-	version = PLUGIN_VERSION,
+	name = "Knife Premium [Demo Version]", 
+	author = PLUGIN_AUTHOR, 
+	description = "Knife Premium from Sniper007", 
+	version = PLUGIN_VERSION, 
 	url = "https://steamcommunity.com/id/Sniper-oo7/"
 };
 
 public void OnPluginStart()
-{	
+{
 	RegConsoleCmd("sm_premiumknife", CMD_PremiumKnife);
 	RegConsoleCmd("sm_knifepremium", CMD_PremiumKnife);
 	RegConsoleCmd("sm_pk", CMD_PremiumKnife);
 	RegConsoleCmd("sm_kp", CMD_PremiumKnife);
 	
 	HookEvent("round_start", Event_RoundStart);
-
+	
 	g_cChooselimit = CreateConVar("sm_choose_limit", "0", "0 = disabled, 1 = player can only choose once for round");
 	
 	AutoExecConfig(true, "Knife-Premium");
 }
 
-public void OnMapStart()
-{	
-}
-
 public void OnClientPutInServer(int client)
 {
-	if(IsPravyClient(client))
-    {
-    	g_szPremiumKnife[client] = -1;
-    }
+	if (IsValidClient(client))
+	{
+		g_szPremiumKnife[client] = -1;
+	}
 }
 
 public void OnClientDisconnect(int client)
@@ -62,7 +58,7 @@ public void OnClientDisconnect(int client)
 
 public Action CMD_PremiumKnife(int client, int args)
 {
-	if (IsPravyClient(client))
+	if (IsValidClient(client))
 	{
 		if (IsPlayerAlive(client))
 		{
@@ -79,50 +75,50 @@ public Action CMD_PremiumKnife(int client, int args)
 
 
 public void Event_RoundStart(Event event, const char[] name, bool bDontBroadcast)
-{   
+{
 	for (int i = 1; i <= MaxClients; i++)
 	{
-		if(IsPravyClient(i))
+		if (IsValidClient(i))
 		{
 			g_bUsed[i] = false;
 		}
 	}
 	
-    CreateTimer(1.5, PremiumKnife);
+	CreateTimer(1.5, PremiumKnife);
 }
 
 public Action PremiumKnife(Handle timer)
 {
 	for (int i = 1; i <= MaxClients; i++)
 	{
-		if(IsPravyClient(i))
-		{	
-			if(Choose[i] == 1)
+		if (IsValidClient(i))
+		{
+			if (Choose[i] == 1)
 			{
 				RemoveKnife(i);
 				int iItem = GivePlayerItem(i, "weapon_fists");
 				EquipPlayerWeapon(i, iItem);
 			}
-			else if(Choose[i] == 2)
+			else if (Choose[i] == 2)
 			{
 				RemoveKnife(i);
 				int iItem = GivePlayerItem(i, "weapon_spanner");
 				EquipPlayerWeapon(i, iItem);
 			}
-			else if(Choose[i] == 3)
+			else if (Choose[i] == 3)
 			{
 				RemoveKnife(i);
 				int iItem = GivePlayerItem(i, "weapon_hammer");
 				EquipPlayerWeapon(i, iItem);
 			}
-			else if(Choose[i] == 4)
+			else if (Choose[i] == 4)
 			{
 				RemoveKnife(i);
 				int iItem = GivePlayerItem(i, "weapon_axe");
 				EquipPlayerWeapon(i, iItem);
 			}
 		}
-    }
+	}
 }
 
 //GUN-MENU
@@ -146,7 +142,7 @@ public int mPKHandler(Menu menu, MenuAction action, int client, int index)
 	{
 		case MenuAction_Select:
 		{
-			if (IsPravyClient(client))
+			if (IsValidClient(client))
 			{
 				if (IsPlayerAlive(client))
 				{
@@ -155,48 +151,48 @@ public int mPKHandler(Menu menu, MenuAction action, int client, int index)
 						char szItem[32];
 						menu.GetItem(index, szItem, sizeof(szItem));
 						Format(g_szPremiumKnife[client], sizeof(g_szPremiumKnife), "%s", szItem);
-						if(StrEqual(g_szPremiumKnife[client], "weapon_fists"))
-						{	
+						if (StrEqual(g_szPremiumKnife[client], "weapon_fists"))
+						{
 							RemoveKnife(client);
 							int iItem = GivePlayerItem(client, "weapon_fists");
 							EquipPlayerWeapon(client, iItem);
 							Choose[client] = 1;
-							if(g_cChooselimit.IntValue == 1)
+							if (g_cChooselimit.IntValue == 1)
 							{
 								g_bUsed[client] = true;
 							}
 						}
-						else if(StrEqual(g_szPremiumKnife[client], "weapon_spanner"))
-						{							
+						else if (StrEqual(g_szPremiumKnife[client], "weapon_spanner"))
+						{
 							RemoveKnife(client);
 							int iItem = GivePlayerItem(client, "weapon_spanner");
 							EquipPlayerWeapon(client, iItem);
 							Choose[client] = 2;
-							if(g_cChooselimit.IntValue == 1)
+							if (g_cChooselimit.IntValue == 1)
 							{
 								g_bUsed[client] = true;
 							}
 						}
-						else if(StrEqual(g_szPremiumKnife[client], "weapon_hammer"))
-						{	
+						else if (StrEqual(g_szPremiumKnife[client], "weapon_hammer"))
+						{
 							RemoveKnife(client);
 							int iItem = GivePlayerItem(client, "weapon_hammer");
 							EquipPlayerWeapon(client, iItem);
 							Choose[client] = 3;
-							if(g_cChooselimit.IntValue == 1)
+							if (g_cChooselimit.IntValue == 1)
 							{
 								g_bUsed[client] = true;
 							}
 						}
-						else if(StrEqual(g_szPremiumKnife[client], "weapon_axe"))
-						{							
-							if(IsClientVIP(client))
+						else if (StrEqual(g_szPremiumKnife[client], "weapon_axe"))
+						{
+							if (IsClientVIP(client))
 							{
 								RemoveKnife(client);
 								int iItem = GivePlayerItem(client, "weapon_axe");
 								EquipPlayerWeapon(client, iItem);
 								Choose[client] = 4;
-								if(g_cChooselimit.IntValue == 1)
+								if (g_cChooselimit.IntValue == 1)
 								{
 									g_bUsed[client] = true;
 								}
@@ -219,34 +215,38 @@ public int mPKHandler(Menu menu, MenuAction action, int client, int index)
 				}
 			}
 		}
+		case MenuAction_End:
+		{
+			delete menu;
+		}
 	}
 }
 
-stock bool IsPravyClient(int client, bool alive = false)
+stock bool IsValidClient(int client, bool alive = false)
 {
-    if(client >= 1 && client <= MaxClients && IsClientConnected(client) && IsClientInGame(client) && !IsClientSourceTV(client) && (alive == false || IsPlayerAlive(client)))
-    {
-        return true;
-    }
-   
-    return false;
+	if (client >= 1 && client <= MaxClients && IsClientConnected(client) && IsClientInGame(client) && !IsClientSourceTV(client) && (alive == false || IsPlayerAlive(client)))
+	{
+		return true;
+	}
+	
+	return false;
 }
 
 stock bool IsClientVIP(int client)
 {
-    return CheckCommandAccess(client, "", ADMFLAG_RESERVATION);
+	return CheckCommandAccess(client, "", ADMFLAG_RESERVATION);
 }
 
 void RemoveKnife(int client)
 {
-	if(IsPravyClient(client))
+	if (IsValidClient(client))
 	{
 		int iWepIndex = GetPlayerWeaponSlot(client, CS_SLOT_KNIFE);
 		
-		if(iWepIndex != -1)
+		if (iWepIndex != -1)
 		{
 			RemovePlayerItem(client, iWepIndex);
 			AcceptEntityInput(iWepIndex, "Kill");
 		}
 	}
-}
+} 
