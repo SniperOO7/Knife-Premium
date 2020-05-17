@@ -47,13 +47,13 @@ public void OnClientPutInServer(int client)
 {
 	if (IsValidClient(client))
 	{
-		g_szPremiumKnife[client] = -1;
+		Choose[client] = 0;
 	}
 }
 
 public void OnClientDisconnect(int client)
 {
-	g_szPremiumKnife[client] = -1;
+	Choose[client] = 0;
 }
 
 public Action CMD_PremiumKnife(int client, int args)
