@@ -1,0 +1,51 @@
+// Knife-Premium Translation by Sniper007
+// Date: 2020-05-09 23:22 UTC
+// Language: English (en)
+// 
+//
+"Phrases"
+{
+	"player_alive"
+	{
+		"en"		"You have to be alive!"
+	}
+	
+	"disabled_feature"
+	{
+		"en"		"This feature is disabled!"
+	}
+	
+	"no_money_fists"
+	{
+		"#format"	"{1:i}"
+		"en"		"You don't have enough money, you need {green}{1} {default}$"
+	}
+	
+	"no_money_spanner"
+	{
+		"#format"	"{1:i}"
+		"en"		"You don't have enough money, you need {green}{1} {default}$"
+	}
+	
+	"no_money_hammer"
+	{
+		"#format"	"{1:i}"
+		"en"		"You don't have enough money, you need {green}{1} {default}$"
+	}
+	
+	"no_money_axe"
+	{
+		"#format"	"{1:i}"
+		"en"		"You don't have enough money, you need {green}{1} {default}$"
+	}
+	
+	"no_buy_vip"
+	{
+		"en"		"You have to buy {green}VIP!"
+	}
+	
+	"wait_next_round"
+	{
+		"en"		"You have already chosen knife, you have to wait to next round!"
+	}
+}
