@@ -8,8 +8,6 @@
 * **What this plugin have ?**
     - Knifes from danger zone (fists, spanner, hammer, axe)
     - Limit for player (if player can use menu without limit or not)
-
-* **What full version of this plugin have ?**
     - Updates free
     - Price for knifes (you can disabled price)
     - You can change how long players will get knife (pernament, whole map, one round)
